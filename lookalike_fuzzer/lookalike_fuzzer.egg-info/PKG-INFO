@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: lookalike_fuzzer
+Version: 0.1.0
+Summary: technik nai karn thod-sob software
+Requires-Dist: idna
+Dynamic: requires-dist
+Dynamic: summary

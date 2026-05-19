@@ -1,0 +1,12 @@
+fastapi[all]
+uvicorn
+httpx
+maxminddb
+requests
+python-whois
+aiodns
+duckduckgo-search
+ddgs
+idna
+pydantic
+python-dateutil

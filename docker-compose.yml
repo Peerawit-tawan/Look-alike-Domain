@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: BE/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - screenshots:/app/screenshots
+      - ./BE/GeoIP:/app/GeoIP
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SCREENSHOT_SERVICE_URL=http://screenshot-service:8001
+      - SCREENSHOT_HTTP_CONCURRENCY=5
+      - DOMAIN_WORKERS=120
+      - DNS_CONCURRENCY=50
+      - ENRICH_WORKERS=8
+      - MAX_DOMAINS=0
+      - MAX_RESPONSE_ACTIVE=0
+      - MAX_RESPONSE_INACTIVE=0
+      - FULL_ACTIVE_DETAIL_LIMIT=0
+      - ACTIVE_SCREENSHOT_LIMIT=0
+      - CAPTURE_INPUT_SCREENSHOT=1
+      - ENABLE_SUBDOMAIN_SEARCH=1
+      - ENABLE_WHOIS=1
+      - DDG_QUERY_DELAY=1
+      - LOG_ENRICH_TIMING=0
+    depends_on:
+      - screenshot-service
+
+  screenshot-service:
+    build:
+      context: ./screenshot-service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    volumes:
+      - screenshots:/app/screenshots
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SCREENSHOT_CACHE_TTL=21600
+    # healthcheck:
+    #   test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/health').read(); print('ok')"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 10
+
+  frontend:
+    build:
+      context: ./FE/my-app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+volumes:
+  screenshots:

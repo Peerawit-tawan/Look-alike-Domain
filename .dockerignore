@@ -1,0 +1,8 @@
+FE/my-app/node_modules/
+FE/my-app/.next/
+**/.git/
+**/__pycache__/
+BE/screenshots/
+BE/*.json
+BE/GeoIP/
+lookalike_fuzzer/*.egg-info/

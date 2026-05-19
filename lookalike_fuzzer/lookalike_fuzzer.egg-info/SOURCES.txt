@@ -1,0 +1,11 @@
+setup.py
+fuzzer/__init__.py
+fuzzer/base.py
+fuzzer/core.py
+fuzzer/domain.py
+fuzzer/text.py
+lookalike_fuzzer.egg-info/PKG-INFO
+lookalike_fuzzer.egg-info/SOURCES.txt
+lookalike_fuzzer.egg-info/dependency_links.txt
+lookalike_fuzzer.egg-info/requires.txt
+lookalike_fuzzer.egg-info/top_level.txt

@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@source "../node_modules/flowbite-react/dist/**/*.{js,mjs}";
+
+:root {
+  --background: #f4f7fb;
+  --foreground: #101828;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top left, rgba(51, 92, 255, 0.08), transparent 26%),
+    radial-gradient(circle at top right, rgba(14, 116, 144, 0.08), transparent 18%),
+    linear-gradient(180deg, #f8fbff 0%, #f4f7fb 100%);
+}
+
+body {
+  min-height: 100vh;
+  background: transparent;
+  color: var(--foreground);
+  font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeinup {
+  animation: fadeInUp 0.35s ease both;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef2f7;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid #eef2f7;
+  border-radius: 999px;
+  background: #c7d1e2;
+}
